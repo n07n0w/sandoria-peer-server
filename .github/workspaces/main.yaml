@@ -1,0 +1,26 @@
+name: Build and Push Docker Image to Yandex Cloud
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  docker-build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Log in to Yandex Cloud Container Registry
+        run: |
+          echo "${{ secrets.YC_OAUTH_TOKEN }}" | docker login --username oauth --password-stdin cr.yandex
+
+      - name: Build Docker image
+        run: |
+          docker build -t cr.yandex/crpee2t4arv7evv2mnhq/peerjs-server:latest .
+
+      - name: Push Docker image
+        run: |
+          docker push cr.yandex/crpee2t4arv7evv2mnhq/peerjs-server:latest
