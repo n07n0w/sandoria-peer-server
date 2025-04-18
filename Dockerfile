@@ -27,4 +27,4 @@ ENV NODE_ENV=production
 EXPOSE 8080
 
 #ENTRYPOINT ["node", "peerjs.js"]
-ENTRYPOINT ["node", "peerjs.js", "--proxied"]
+ENTRYPOINT ["node", "peerjs.js", "--proxied", "--path=/peerjs"]
