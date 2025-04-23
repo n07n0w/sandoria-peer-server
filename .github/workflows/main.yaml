@@ -17,7 +17,7 @@ jobs:
         run: echo "${{ secrets.SELECTEL_CR_TOKEN }}" | docker login cr.selcloud.ru --username token --password-stdin
 
       - name: Build Docker image
-        run: docker build -t cr.selcloud.ru/your-project/peerjs-server:latest .
+        run: docker build -t cr.selcloud.ru/sandoria-peer/peerjs-server:latest .
 
       - name: Push Docker image
-        run: docker push cr.selcloud.ru/your-project/peerjs-server:latest
+        run: docker push cr.selcloud.ru/sandoria-peer/peerjs-server:latest
