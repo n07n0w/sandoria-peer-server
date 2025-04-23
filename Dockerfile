@@ -8,7 +8,6 @@ RUN npm clean-install
 
 COPY . ./
 
-# Установим production-режим для сборки
 ENV NODE_ENV=production
 
 RUN npm run build
