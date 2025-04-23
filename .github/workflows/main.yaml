@@ -2,19 +2,25 @@ name: Build and Push Docker Image to Yandex Cloud
  
 on:
  push:
-     - name: Checkout repo
-       uses: actions/checkout@v3
 
-     - name: Log in to Yandex Cloud Container Registry
-       run: echo "${{ secrets.YC_OAUTH_TOKEN }}" | docker login --username oauth --password-stdin cr.yandex
-            #- name: Log in to Selectel Container Registry
-            #  run: echo "${{ secrets.SELECTEL_CR_TOKEN }}" | docker login cr.selcloud.ru --username token --password-stdin
 
-     - name: Build Docker image
-       run: docker build -t cr.yandex/crpee2t4arv7evv2mnhq/peerjs-server:latest .
-            # run: docker build -t cr.selcloud.ru/your-project/peerjs-server:latest .
-
-     - name: Push Docker image
-       run: |
-         docker push cr.yandex/crpee2t4arv7evv2mnhq/peerjs-server:latest
-         #run: docker push cr.selcloud.ru/your-project/peerjs-server:latest
+jobs:
+  docker-build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+   
+      - name: Log in to Yandex Cloud Container Registry
+        run: echo "${{ secrets.YC_OAUTH_TOKEN }}" | docker login --username oauth --password-stdin cr.yandex
+             #- name: Log in to Selectel Container Registry
+             #  run: echo "${{ secrets.SELECTEL_CR_TOKEN }}" | docker login cr.selcloud.ru --username token --password-stdin
+   
+      - name: Build Docker image
+        run: docker build -t cr.yandex/crpee2t4arv7evv2mnhq/peerjs-server:latest .
+             # run: docker build -t cr.selcloud.ru/your-project/peerjs-server:latest .
+   
+      - name: Push Docker image
+        run: |
+          docker push cr.yandex/crpee2t4arv7evv2mnhq/peerjs-server:latest
+          #run: docker push cr.selcloud.ru/your-project/peerjs-server:latest
